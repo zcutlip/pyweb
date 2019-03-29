@@ -2,15 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>EnvironmentVariables</key>
-	<dict>
-		<key>HOME</key>
-		<string>/Users/zach</string>
-		<key>PATH</key>
-		<string>/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/MacGPG2/bin:/Applications/Wireshark.app/Contents/MacOS:/Users/zach/Library/Python/3.7/bin:/Users/zach/Library/Python/2.7/bin</string>
-	</dict>
+
 	<key>Label</key>
-	<string>local.job</string>
+	<string>pyweb</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/Users/zach/Library/Python/3.7/bin/pyweb</string>
