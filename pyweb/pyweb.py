@@ -1,5 +1,6 @@
 import argparse
 import http.server
+from http.server import SimpleHTTPRequestHandler
 import socketserver
 import os
 import logging
@@ -9,12 +10,17 @@ DEFAULT_PATH = os.path.join(os.getenv("HOME"),"www")
 DEFAULT_LOG_PATH = os.path.join(os.getenv("HOME"),"var","log")
 
 
+class LoggingHttpHandler(SimpleHTTPRequestHandler):
+
+    def log_message(self, format, *args):
+        logging.info("%s -- [%s] %s" % (self.client_address[0], self.log_date_time_string(), format%args))
+
 def serve(config):
     web_dir = config["path"]
     port = config["port"]
     os.chdir(web_dir)
 
-    Handler = http.server.SimpleHTTPRequestHandler
+    Handler = LoggingHttpHandler
     socketserver.TCPServer.allow_reuse_address = True
     httpd = socketserver.TCPServer(("127.0.0.1", port), Handler)
     logging.info("Serving at port: %d" % port)
