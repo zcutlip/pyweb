@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>HOME</key>
+		<string>/Users/zach</string>
+		<key>PATH</key>
+		<string>/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/MacGPG2/bin:/Applications/Wireshark.app/Contents/MacOS:/Users/zach/Library/Python/3.7/bin:/Users/zach/Library/Python/2.7/bin</string>
+	</dict>
+	<key>Label</key>
+	<string>local.job</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/zach/Library/Python/3.7/bin/pyweb</string>
+		<string>--port</string>
+		<string>8080</string>
+		<string>--www-root</string>
+		<string>/Users/zach/.pyweb/var/www</string>
+		<string>--log-path</string>
+		<string>/Users/zach/.pyweb/var/log</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/Users/zach/.pyweb/var/log/stderr</string>
+	<key>StandardOutPath</key>
+	<string>/Users/zach/.pyweb/var/log/stdout</string>
+</dict>
+</plist>
