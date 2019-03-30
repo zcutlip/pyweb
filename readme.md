@@ -1,6 +1,6 @@
 # PyWeb
 -------
-Sometimes you want to access stuff in a web browser that you have locally on your computer, such as a draft copy of your blog or an offline cache of Wikipedia, or whatever else. *PyWeb* makes that easy.
+Sometimes you want to access stuff in a web browser that you have locally on your computer, such as a draft copy of your blog, an offline cache of Wikipedia, or whatever else. *PyWeb* makes that easy.
 
 *PyWeb* is intentionally limited and was designed with the following considerations:
 
@@ -33,10 +33,10 @@ Test your configuration:
 $ pyweb --port <your port> --www-root /path/to/content/root --log-dir /path/to/log/dir
 ```
 
-If content loads in your browser, you can set pyweb to run at log in. On a Mac, edit `pyweb.plist` to make sense for you, and copy it to `~/Library/LaunchAgents/`
+If content loads in your browser, you can set pyweb to run at log in. On a Mac, edit `pyweb.plist` to make sense for you, and copy it to `~/Library/LaunchAgents/`.
 
 On Linux, you can probably have it run as a cron job or similar.
 
-PyWeb doesn't daemonize because daemonizing is deprecated under `launchd`. If you need it to daemonize, you can probably use the [daemon(1)](http://www.libslack.org/daemon/) command.
+*PyWeb* doesn't daemonize because daemonizing is deprecated under `launchd`. If you need it to daemonize, you can probably use the [daemon(1)](http://www.libslack.org/daemon/) command.
 
 
