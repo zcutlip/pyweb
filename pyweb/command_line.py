@@ -10,7 +10,6 @@ except ImportError:
 
 def main():
     argv = sys.argv[1:]
-    print(argv)
     pyweb.main(argv)
 
 
