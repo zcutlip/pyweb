@@ -1,5 +1,8 @@
 # PyWeb
--------
+
+-----------------
+
+
 Sometimes you want to access stuff in a web browser that you have locally on your computer, such as a draft copy of your blog, an offline cache of Wikipedia, or whatever else. *PyWeb* makes that easy.
 
 *PyWeb* is intentionally limited and was designed with the following considerations:
@@ -27,6 +30,18 @@ $ mkdir /path/to/content/root /path/to/log/dir
 
 ### Running
 
+**Usage:**
+```
+pyweb --help
+usage: pyweb [-h] [--port PORT] [--www-root WWW_ROOT] [--log-path LOG_PATH]
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --port PORT          TCP port to listen on.
+  --www-root WWW_ROOT  WWW root path to serve from.
+  --log-path LOG_PATH  Directory to write logfiles to.
+```
+
 Test your configuration:
 
 ```
@@ -39,4 +54,13 @@ On Linux, you can probably have it run as a cron job or similar.
 
 *PyWeb* doesn't daemonize because daemonizing is deprecated under `launchd`. If you need it to daemonize, you can probably use the [daemon(1)](http://www.libslack.org/daemon/) command.
 
+### Questions
 
+**Q:** You know you can just use `python -m SimpleHTTPServer`, right?  
+**A:** Yes.
+
+**Q:** Having a webserver running 24/7 out of your home directory is a terrible idea.  
+**A:** That's not actually a question, but I'll address it anyway. *Is* it a terrible idea? I honestly don't know, but I think as long as it only binds to `localhost` it's probably okay. If it's not and you can show me, I'd like that. I'll learn something in the process.
+
+**Q:** Why do you need to serve content to yourself out of your home directory?  
+**A:** It's probably just me, but I have a variety of stuff cached offline that I'd like to view in a web browser, such as [Python documentation](https://docs.python.org/3/download.html), and I'd like to have it available all the time without thinking about it, even when I'm away from the internet.
