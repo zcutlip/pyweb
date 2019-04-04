@@ -45,6 +45,15 @@ class ContentInstaller:
                 logger.critical(msg)
                 raise ContentInstallerException(msg)
             rel_dst = os.path.relpath(www_root_abs, dst)
+        else:
+            _dst = os.path.join(www_root_abs, dst)
+            _dst = os.path.realpath(_dst)
+            _root = os.path.commonprefix([www_root_abs, _dst])
+            if _root is not www_root_abs:
+                msg = "Destination is a relative path that resolves outside of web root. {}".format([www_root_abs, dst])
+                logger.critical(msg)
+                raise ContentInstallerException(msg)
+            rel_dst = os.path.relpath(www_root_abs, _dst)
 
         abs_dst = os.path.join(www_root_abs, rel_dst)
         if os.path.exists(abs_dst):
