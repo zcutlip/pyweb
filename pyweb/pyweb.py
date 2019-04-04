@@ -1,5 +1,5 @@
 import argparse
-import http.server
+# import http.server
 from http.server import SimpleHTTPRequestHandler
 import socketserver
 import os
@@ -19,7 +19,8 @@ DEFAULT_PYWEB_LOG_DIR = os.path.join(DEFAULT_PYWEB_VAR, "log")
 class LoggingHttpHandler(SimpleHTTPRequestHandler):
 
     def log_message(self, format, *args):
-        logging.info("%s -- [%s] %s" % (self.client_address[0], self.log_date_time_string(), format%args))
+        logging.info("%s -- [%s] %s" % (self.client_address[0], self.log_date_time_string(), format % args))
+
 
 def serve(config):
     web_dir = config["path"]
@@ -37,7 +38,7 @@ def serve(config):
 def parse_args(argv):
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--port", help="TCP port to listen on.")
+    parser.add_argument("--port", help="TCP port to listen on.", type=int)
     parser.add_argument("--www-root", help="WWW root path to serve from.")
     parser.add_argument("--log-path", help="Directory to write logfiles to.")
     args = parser.parse_args(argv)
@@ -48,13 +49,13 @@ def parse_args(argv):
 def main(argv):
     args = parse_args(argv)
 
-    port = int(args.port) or PORT
+    port = args.port or PORT
     path = args.www_root or DEFAULT_PYWEB_CONTENT_DIR
     logpath = args.log_path or DEFAULT_PYWEB_LOG_DIR
 
     logging.basicConfig(filename=os.path.join(logpath, "pyweb.log"), level=logging.DEBUG)
 
-    config={"port":port,
-            "path":path}
+    config = {"port": port,
+              "path": path}
 
     serve(config)
