@@ -42,17 +42,56 @@ optional arguments:
   --log-path LOG_PATH  Directory to write logfiles to.
 ```
 
+**Defaults:**
+
+`WWW_ROOT` defaults to `~/.pyweb/var/www`
+`LOG_PATH` defaults to `~/.pyweb/var/log`
+`PORT` defauls to `8080`
+
+
 Test your configuration:
 
 ```
 $ pyweb --port <your port> --www-root /path/to/content/root --log-dir /path/to/log/dir
 ```
 
-If content loads in your browser, you can set pyweb to run at log in. On a Mac, edit `pyweb.plist` to make sense for you, and copy it to `~/Library/LaunchAgents/`.
+Assuming content loads in your browser, you can set pyweb to run at log in. On a Mac, edit `pyweb.plist` to make sense for you, and copy it to `~/Library/LaunchAgents/`.
 
 On Linux, you can probably have it run as a cron job or similar.
 
 *PyWeb* doesn't daemonize because daemonizing is deprecated under `launchd`. If you need it to daemonize, you can probably use the [daemon(1)](http://www.libslack.org/daemon/) command.
+
+### Adding content
+
+There's a command-line utility to add content into your `WWW_ROOT`.
+
+**Usage:**
+```
+$ pyweb-add-content --help
+usage: pyweb-add-content [-h] [--www-root WWW_ROOT] [--log-path LOG_PATH]
+                         content_src_dir content_dst_dir
+
+positional arguments:
+  content_src_dir      Source directory containing content to be intalled.
+  content_dst_dir      Name of directory under <WWW-ROOT> for content to be
+                       located.
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --www-root WWW_ROOT  WWW root path to install to.
+  --log-path LOG_PATH  Directory to write logfiles to.
+```
+
+The default values are the same as for `pyweb`.
+
+**Example:**
+
+```
+$ pyweb-add-content ./python-3.7.3-docs-html python/python-3.7.3-docs-html
+Installing ./python-3.7.3-docs-html
+Logging to /Users/zach/.pyweb/var/log/pyweb-installer.log
+Installation complete.
+```
 
 ### Questions
 
