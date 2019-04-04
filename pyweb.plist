@@ -4,16 +4,18 @@
 <dict>
 
 	<key>Label</key>
-	<string>pyweb</string>
+	<string>link.inode.pyweb</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/Users/zach/Library/Python/3.7/bin/pyweb</string>
+<!-- 	
 		<string>--port</string>
 		<string>8080</string>
 		<string>--www-root</string>
 		<string>/Users/zach/.pyweb/var/www</string>
 		<string>--log-path</string>
 		<string>/Users/zach/.pyweb/var/log</string>
+-->
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
