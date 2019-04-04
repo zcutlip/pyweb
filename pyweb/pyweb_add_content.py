@@ -60,7 +60,7 @@ class ContentInstaller:
         dst_path = os.path.join(self.www_root, self.dst_path)
         logger.info("Copying %s to %s" % (src_path, dst_path))
         try:
-            shutil.copytree(src_path, dst_path)
+            shutil.copytree(src_path, dst_path, symlinks=True)
         except Exception as e:
             logger.critical("Exception: {}".format(e))
             raise
