@@ -37,26 +37,33 @@ class ContentInstaller:
 
         www_root_abs = os.path.abspath(www_root)
 
-        rel_dst = dst
         if os.path.isabs(dst):
+            # Resolve all '../', './', etc., out of dst
             _dst = os.path.realpath(dst)
+
+            # What abspath(www_root and abspath(dst)
+            # have in common should be abspath(www_root)
             _root = os.path.commonprefix([www_root_abs, _dst])
             if _root is not www_root_abs:
                 msg = "Destination path is absolute and is not a subdirectory of web root. {}".format([www_root, dst])
                 logger.critical(msg)
                 raise ContentInstallerException(msg)
 
-            rel_dst = os.path.relpath(_dst, www_root_abs)
         else:
+            # make dst absolute by joining it to abs www_root path
             _dst = os.path.join(www_root_abs, dst)
+            # Resolve all '../', './', etc., out of resulting path
             _dst = os.path.realpath(_dst)
+
+            # What abspath(www_root and abspath(dst)
+            # have in common should be abspath(www_root)
             _root = os.path.commonprefix([www_root_abs, _dst])
             if _root is not www_root_abs:
                 msg = "Destination is a relative path that resolves outside of web root. {}".format([www_root_abs, dst])
                 logger.critical(msg)
                 raise ContentInstallerException(msg)
 
-            rel_dst = os.path.relpath(_dst, www_root_abs)
+        rel_dst = os.path.relpath(_dst, www_root_abs)
 
         abs_dst = os.path.join(www_root_abs, rel_dst)
         if os.path.exists(abs_dst):
