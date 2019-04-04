@@ -6,8 +6,14 @@ import os
 import logging
 
 PORT = 8080
-DEFAULT_PATH = os.path.join(os.getenv("HOME"),"www")
-DEFAULT_LOG_PATH = os.path.join(os.getenv("HOME"),"var","log")
+# ~/.pyweb
+DEFAULT_PYWEB_HOME = os.path.join(os.getenv("HOME"), ".pyweb")
+# ~/.pyweb/var
+DEFAULT_PYWEB_VAR = os.path.join(DEFAULT_PYWEB_HOME, "var")
+# ~/.pyweb/var/www
+DEFAULT_PYWEB_CONTENT_DIR = os.path.join(DEFAULT_PYWEB_VAR, "www")
+# ~/.pyweb/var/log
+DEFAULT_PYWEB_LOG_DIR = os.path.join(DEFAULT_PYWEB_VAR, "log")
 
 
 class LoggingHttpHandler(SimpleHTTPRequestHandler):
@@ -43,8 +49,8 @@ def main(argv):
     args = parse_args(argv)
 
     port = int(args.port) or PORT
-    path = args.www_root or DEFAULT_PATH
-    logpath = args.log_path or DEFAULT_LOG_PATH
+    path = args.www_root or DEFAULT_PYWEB_CONTENT_DIR
+    logpath = args.log_path or DEFAULT_PYWEB_LOG_DIR
 
     logging.basicConfig(filename=os.path.join(logpath, "pyweb.log"), level=logging.DEBUG)
 
