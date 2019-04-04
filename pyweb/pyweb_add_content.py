@@ -91,12 +91,13 @@ def main(argv):
     logger = logging.getLogger("pyweb-installer")
     print("Installing %s" % src_dir)
     print("Logging to %s" % os.path.join(logpath, "pyweb-installer.log"))
-    installer = ContentInstaller(src_dir, dst_dir, www_root, logger=logger)
     try:
+        installer = ContentInstaller(src_dir, dst_dir, www_root, logger=logger)
         installer.install()
     except Exception as e:
-        print("Installation failed: {}".format(e))
+        print("Installation failed: %s" % str(e))
         logger.critical("Installation failed.")
+        exit(1)
 
     print("Installation complete.")
     logger.info("Installation complete.")
